@@ -3,11 +3,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   color: var(--text-secondary);
+  height: 4rem;
 }
 
 .logo {
+  padding: 1rem;
   font-family: 'El Messiri', sans-serif;
   font-weight: 600;
   font-style: italic;
@@ -16,6 +17,7 @@ header {
 }
 
 .highscores {
+  padding: 1rem;
   font-weight: 600;
 }
 

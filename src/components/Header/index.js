@@ -5,10 +5,10 @@ import './Header.css'
 const Header = () => {
   return (
     <header>
-      <div class="logo">
-        <span>Quick Quizes</span>
+      <div className="logo">
+        <span>Quick Quizzes</span>
       </div>
-      <div class="highscores">
+      <div className="highscores">
         <span>View Highscores</span>
       </div>
     </header>
