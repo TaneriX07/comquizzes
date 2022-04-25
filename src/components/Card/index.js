@@ -1,58 +1,51 @@
-import React, { useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
 import './Card.css'
+import fetchQuizzes from '../../helpers'
 
-const quizzes = [
-  {
-    question: 'What is my name?',
-    options: ['Vincent', 'Eric', 'Ema', 'Vera'],
-    answer: 'Vincent',
-  },
-  {
-    question: 'How old am I?',
-    options: [22, 23, 24, 25],
-    answer: 23,
-  },
-]
-
-const StartCard = ({ parentCallback }) => {
+const StartCard = ({ changeMode }) => {
   const handleClick = () => {
-    parentCallback(true)
+    changeMode(true)
   }
 
   return (
-    <main>
-      <div className="cardContainer">
-        <div className="time">00:00:50</div>
-        <div className="head">Quiz Challenge</div>
-        <div className="body">
-          <p>
-            Your objective is to answer the following questions within the time
-            limit.
-          </p>
-          <p>
-            Please note that incorrect answer will result in 10 seconds penalty.
-          </p>
-        </div>
-        <button className="btn" onClick={handleClick}>
-          START
-        </button>
+    <div className="cardContainer">
+      <div className="head">
+        <h2>Quiz Challenge</h2>
       </div>
-    </main>
+      <div className="body">
+        <p>
+          Your objective is to answer the following questions within the time
+          limit.
+        </p>
+        <p>
+          Please note that incorrect answer will result in 10 seconds penalty.
+        </p>
+      </div>
+      <button className="btn" onClick={handleClick}>
+        START
+      </button>
+    </div>
   )
 }
 
 const Card = () => {
   const [quizStart, setQuizStart] = useState(false)
 
-  const handleCallback = (data) => {
+  // Mode: StartCard or QuizCard
+  const changeMode = (data) => {
     setQuizStart(data)
   }
 
-  return !quizStart ? (
-    <StartCard parentCallback={handleCallback} />
-  ) : (
-    <div>Hello</div>
+  // Fetch quizzes
+  useEffect(() => {
+    fetchQuizzes()
+  }, [])
+
+  return (
+    <main>
+      <div className="time">00:00:50</div>
+      {!quizStart ? <StartCard changeMode={changeMode} /> : <div>Hello</div>}
+    </main>
   )
 }
 

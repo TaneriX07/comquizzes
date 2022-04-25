@@ -2,6 +2,8 @@ main {
   min-height: calc(100vh - 4rem);
   background-color: var(--bg-secondary);
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 }
@@ -14,7 +16,7 @@ main {
   justify-content: center;
   gap: 2rem;
   width: 90%;
-  height: 80vh;
+  height: 60vh;
   border-radius: 2.5%;
   box-shadow: var(--shadow)
 }
@@ -26,7 +28,7 @@ main {
 
 .head {
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .body {
