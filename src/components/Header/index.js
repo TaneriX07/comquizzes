@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className="logo">
-        <span>Quick Quizzes</span>
+        <span>COM Quizzes</span>
       </div>
       <div className="highscores">
         <span>View Highscores</span>
