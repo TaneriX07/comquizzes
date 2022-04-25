@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './Card.css'
-import fetchQuizzes from '../../helpers'
 
 const StartCard = ({ changeMode }) => {
   const handleClick = () => {
@@ -30,14 +29,27 @@ const StartCard = ({ changeMode }) => {
 
 const Card = () => {
   const [quizStart, setQuizStart] = useState(false)
+  const [quizzes, setQuizzes] = useState([])
 
   // Mode: StartCard or QuizCard
   const changeMode = (data) => {
     setQuizStart(data)
   }
 
-  // Fetch quizzes
   useEffect(() => {
+    // Fetch quizzes
+    const fetchQuizzes = async () => {
+      try {
+        const response = await fetch(
+          'https://opentdb.com/api.php?amount=20&category=18&type=multiple'
+        )
+        const data = await response.json()
+        setQuizzes(data.results)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     fetchQuizzes()
   }, [])
 

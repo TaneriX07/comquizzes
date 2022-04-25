@@ -5,7 +5,8 @@ const fetchQuizzes = async () => {
     const response = await axios.get(
       'https://opentdb.com/api.php?amount=20&category=18&type=multiple'
     )
-    const data = response.data.results
+    const data = await response.data.results
+    // console.log(data)
     return data
   } catch (error) {
     console.log(error)
