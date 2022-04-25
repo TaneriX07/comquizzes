@@ -1,31 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Card.css'
-
-const StartCard = ({ changeMode }) => {
-  const handleClick = () => {
-    changeMode(true)
-  }
-
-  return (
-    <div className="cardContainer">
-      <div className="head">
-        <h2>Quiz Challenge</h2>
-      </div>
-      <div className="body">
-        <p>
-          Your objective is to answer the following questions within the time
-          limit.
-        </p>
-        <p>
-          Please note that incorrect answer will result in 10 seconds penalty.
-        </p>
-      </div>
-      <button className="btn" onClick={handleClick}>
-        START
-      </button>
-    </div>
-  )
-}
+import StartCard from './StartCard'
+import QuizCard from './QuizCard'
 
 const Card = () => {
   const [quizStart, setQuizStart] = useState(false)
@@ -41,7 +17,7 @@ const Card = () => {
     const fetchQuizzes = async () => {
       try {
         const response = await fetch(
-          'https://opentdb.com/api.php?amount=20&category=18&type=multiple'
+          'https://opentdb.com/api.php?amount=20&category=17&difficulty=easy&type=multiple'
         )
         const data = await response.json()
         setQuizzes(data.results)
@@ -56,7 +32,9 @@ const Card = () => {
   return (
     <main>
       <div className="time">00:00:50</div>
-      {!quizStart ? <StartCard changeMode={changeMode} /> : <div>Hello</div>}
+      {!quizStart ? <StartCard changeMode={changeMode} /> : null}
+      {/* This prevent the QuizCard from being rendered when the data fetching is not yet done */}
+      {quizStart && quizzes.length > 0 ? <QuizCard quiz={quizzes[0]} /> : null}
     </main>
   )
 }

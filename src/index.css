@@ -5,6 +5,7 @@
   --bg-secondary: white;
   --text-primary: black;
   --text-secondary: white;
+  --transition: all 400ms ease;
   --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   font-family: 'Poppins', sans-serif;
 }
