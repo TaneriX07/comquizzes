@@ -8,7 +8,7 @@ const StartCard = ({ changeMode }) => {
   return (
     <div className="cardContainer">
       <div className="head">
-        <h2>Quiz Challenge</h2>
+        <h2>Welcome!</h2>
       </div>
       <div className="body">
         <p>
@@ -18,6 +18,7 @@ const StartCard = ({ changeMode }) => {
         <p>
           Please note that incorrect answer will result in 10 seconds penalty.
         </p>
+        <p>The questions are related to computers, It'll be fun.</p>
       </div>
       <button className="btn" onClick={handleClick}>
         START
