@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './QuizCard.css'
 
+// Use "He" to decode HTML entities
+import he from 'he'
+
 const QuizCard = ({ quiz, updateScore, score }) => {
   const [answers, setAnswers] = useState([])
   const [wrongAnswers, setWrongAnswers] = useState([])
@@ -20,7 +23,6 @@ const QuizCard = ({ quiz, updateScore, score }) => {
   // The answers in this array will be disabled
   const handleClick = (answer, index) => {
     if (answer === quiz.correct_answer) {
-      console.log(score)
       updateScore(score)
     } else {
       setWrongAnswers([...wrongAnswers, index])
@@ -30,7 +32,7 @@ const QuizCard = ({ quiz, updateScore, score }) => {
   return (
     <div className="cardContainer">
       <div className="question">
-        <p>{quiz.question}</p>
+        <p>{he.decode(quiz.question)}</p>
       </div>
       <div className="answers">
         {answers.map((answer, index) => (
@@ -40,7 +42,7 @@ const QuizCard = ({ quiz, updateScore, score }) => {
             disabled={wrongAnswers.includes(index)}
             onClick={() => handleClick(answer, index)}
           >
-            {answer}
+            {he.decode(answer)}
           </button>
         ))}
       </div>
