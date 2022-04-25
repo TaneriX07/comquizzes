@@ -23,7 +23,7 @@ const Card = () => {
     const fetchQuizzes = async () => {
       try {
         const response = await fetch(
-          'https://opentdb.com/api.php?amount=20&category=18&type=multiple'
+          'https://opentdb.com/api.php?amount=50&category=18&type=multiple'
         )
         const data = await response.json()
         setQuizzes(data.results)
