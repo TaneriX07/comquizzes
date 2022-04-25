@@ -12,8 +12,8 @@ const Card = () => {
     setQuizStart(data)
   }
 
+  // Fetch quizzes
   useEffect(() => {
-    // Fetch quizzes
     const fetchQuizzes = async () => {
       try {
         const response = await fetch(

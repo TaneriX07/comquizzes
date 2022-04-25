@@ -15,6 +15,7 @@
   border: 1px solid var(--bg-primary);
   border-radius: 5px;
   padding: 1rem;
+  cursor: pointer;
   transition: var(--transition);
 }
 

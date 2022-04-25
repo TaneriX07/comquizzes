@@ -1,21 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './QuizCard.css'
 
 const QuizCard = ({ quiz }) => {
-  // Shuffle the answers
-  const answers = [quiz.correct_answer, ...quiz.incorrect_answers].sort(
-    (a, b) => 0.5 - Math.random()
-  )
-
+  const [answers, setAnswers] = useState([])
   const [isCorrect, setIsCorrect] = useState(false)
   const [wrongAnswers, setWrongAnswers] = useState([])
 
+  // Shuffle the answers
+  useEffect(() => {
+    setAnswers(
+      [quiz.correct_answer, ...quiz.incorrect_answers].sort(
+        (a, b) => 0.5 - Math.random()
+      )
+    )
+  }, [])
+
   // Check whether answer is true
   const handleClick = (answer, index) => {
+    console.log('Button clicked')
     if (answer === quiz.correct_answer) {
+      console.log('true')
       setIsCorrect(true)
     } else {
-      wrongAnswers.push(index)
+      console.log('false')
+      setWrongAnswers([...wrongAnswers, index])
     }
   }
 
@@ -30,6 +38,7 @@ const QuizCard = ({ quiz }) => {
             key={index}
             className="answer-btn"
             disabled={wrongAnswers.includes(index)}
+            onClick={() => handleClick(answer, index)}
           >
             {answer}
           </button>
