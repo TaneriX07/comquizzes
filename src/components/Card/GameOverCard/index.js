@@ -17,15 +17,16 @@ const GameOverCard = ({
   return (
     <div className="cardContainer">
       <h2>Game Over</h2>
-      {score > highScore ? (
+      <p className="game-over-message">Score: {score}</p>
+      {score >= highScore ? (
         <p className="game-over-message">
-          Congratulations! You've set a new highscore
+          Congratulations! You've set a new highscore.
         </p>
       ) : (
         <p className="game-over-message">
           Too bad! You're {highScore - score + 1}{' '}
           {highScore - score + 1 <= 1 ? 'score' : 'scores'} away from setting a
-          highscore
+          highscore.
         </p>
       )}
       <button className="btn" onClick={handleClick}>

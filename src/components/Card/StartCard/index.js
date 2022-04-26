@@ -12,8 +12,7 @@ const StartCard = ({ onChangeMode }) => {
       </div>
       <div className="body">
         <p>
-          Your objective is to answer the following questions within the time
-          limit.
+          Your objective is to answer as much question as you can in 1 minute.
         </p>
         <p>
           Please note that incorrect answer will result in 10 seconds penalty.
