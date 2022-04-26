@@ -1,28 +1,29 @@
 import React, { useEffect } from 'react'
 import './Time.css'
 
-const Time = ({ sec, onUpdateSec, onGameOver }) => {
+const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
   useEffect(() => {
-    if (sec >= 0) {
+    if (quizStart && sec >= 0) {
       setTimeout(() => {
         onUpdateSec(sec)
       }, 1000)
+    } else {
+      onGameOver(true)
     }
   })
 
   // Make sure the seconds are displayed properly
-  const printSec = (sec) => {
+  const printTime = (sec) => {
     if (sec <= 0) {
-      onGameOver(true)
-      return '00'
+      return '00:00:00'
     } else if (sec < 10) {
-      return '0' + sec
+      return `00:00:0${sec}`
     } else {
-      return sec
+      return `00:00:${sec}`
     }
   }
 
-  return <div className="time">00:00:{printSec(sec)}</div>
+  return <div className="time">{quizStart ? printTime(sec) : '00:01:00'}</div>
 }
 
 export default Time

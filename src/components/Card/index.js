@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import './Card.css'
 import StartCard from './StartCard'
 import QuizCard from './QuizCard'
+import GameOverCard from './GameOverCard'
 import Time from './Time'
 
-const Card = () => {
+const Card = ({ highScore, onUpdateHighScore }) => {
   const [quizStart, setQuizStart] = useState(false)
   const [quizzes, setQuizzes] = useState([])
   const [score, setScore] = useState(0)
-  const [sec, setSec] = useState(50)
+  const [sec, setSec] = useState(5)
   const [isGameOver, setIsGameOver] = useState(false)
 
   // Mode: StartCard or QuizCard
@@ -53,8 +54,17 @@ const Card = () => {
         sec={sec}
         onUpdateSec={handleUpdateSec}
         onGameOver={handleGameOver}
+        quizStart={quizStart}
       />
-      {isGameOver ? <div>Game OVER</div> : null}
+      {isGameOver ? (
+        <GameOverCard
+          highScore={highScore}
+          score={score}
+          onGameOver={handleGameOver}
+          onUpdateSec={handleUpdateSec}
+          onChangeMode={handleChangeMode}
+        />
+      ) : null}
       {!quizStart && !isGameOver ? (
         <StartCard onChangeMode={handleChangeMode} />
       ) : null}

@@ -2,14 +2,14 @@ import React from 'react'
 
 import './Header.css'
 
-const Header = () => {
+const Header = ({ highScore }) => {
   return (
     <header>
       <div className="logo">
         <a href=".">COM Quizzes</a>
       </div>
       <div className="highscores">
-        <span>View Highscores</span>
+        <span>Highscore: {highScore}</span>
       </div>
     </header>
   )
