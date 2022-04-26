@@ -1,8 +1,8 @@
 import './StartCard.css'
 
-const StartCard = ({ changeMode }) => {
+const StartCard = ({ onChangeMode }) => {
   const handleClick = () => {
-    changeMode(true)
+    onChangeMode(true)
   }
 
   return (

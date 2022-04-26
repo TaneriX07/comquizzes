@@ -9,12 +9,12 @@ const Card = () => {
   const [score, setScore] = useState(0)
 
   // Mode: StartCard or QuizCard
-  const changeMode = (data) => {
+  const handleChangeMode = (data) => {
     setQuizStart(data)
   }
 
   // This callback will be passed to QuizCard to update the score and the card
-  const updateScore = (score) => {
+  const handleUpdateScore = (score) => {
     setScore(score + 1)
   }
 
@@ -38,12 +38,12 @@ const Card = () => {
   return (
     <main>
       <div className="time">00:00:50</div>
-      {!quizStart ? <StartCard changeMode={changeMode} /> : null}
+      {!quizStart ? <StartCard onChangeMode={handleChangeMode} /> : null}
       {/* This prevent the QuizCard from being rendered when the data fetching is not yet done */}
       {quizStart && quizzes.length > 0 ? (
         <QuizCard
           quiz={quizzes[score]}
-          updateScore={updateScore}
+          onUpdateScore={handleUpdateScore}
           score={score}
         />
       ) : null}

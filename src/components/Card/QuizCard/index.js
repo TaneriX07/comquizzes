@@ -4,7 +4,7 @@ import './QuizCard.css'
 // Use "He" to decode HTML entities
 import he from 'he'
 
-const QuizCard = ({ quiz, updateScore, score }) => {
+const QuizCard = ({ quiz, onUpdateScore, score }) => {
   const [answers, setAnswers] = useState([])
   const [wrongAnswers, setWrongAnswers] = useState([])
 
@@ -23,7 +23,7 @@ const QuizCard = ({ quiz, updateScore, score }) => {
   // The answers in this array will be disabled
   const handleClick = (answer, index) => {
     if (answer === quiz.correct_answer) {
-      updateScore(score)
+      onUpdateScore(score)
     } else {
       setWrongAnswers([...wrongAnswers, index])
     }
