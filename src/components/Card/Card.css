@@ -21,3 +21,9 @@ main {
   box-shadow: var(--shadow);
   transition: var(--transition);
 }
+
+@media (min-width:801px) {
+  .cardContainer {
+    width: 50%;
+  }
+}
