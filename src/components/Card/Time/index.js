@@ -3,9 +3,11 @@ import './Time.css'
 
 const Time = ({ sec, onUpdateSec, onGameOver }) => {
   useEffect(() => {
-    setTimeout(() => {
-      onUpdateSec(sec)
-    }, 1000)
+    if (sec >= 0) {
+      setTimeout(() => {
+        onUpdateSec(sec)
+      }, 1000)
+    }
   })
 
   // Make sure the seconds are displayed properly
