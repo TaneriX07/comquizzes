@@ -17,17 +17,20 @@ const GameOverCard = ({
   return (
     <div className="cardContainer">
       <h2>Game Over</h2>
-      <p className="game-over-message">Score: {score}</p>
       {score >= highScore ? (
-        <p className="game-over-message">
-          Congratulations! You've set a new highscore.
-        </p>
+        <div className="game-over-message">
+          <p>Score: {score}</p>
+          <p>Congratulations! You've set a new highscore.</p>
+        </div>
       ) : (
-        <p className="game-over-message">
-          Too bad! You're {highScore - score + 1}{' '}
-          {highScore - score + 1 <= 1 ? 'score' : 'scores'} away from setting a
-          highscore.
-        </p>
+        <div className="game-over-message">
+          <p>Score: {score}</p>
+          <p>
+            Too bad! You're {highScore - score + 1}{' '}
+            {highScore - score + 1 <= 1 ? 'score' : 'scores'} away from setting
+            a highscore.
+          </p>
+        </div>
       )}
       <button className="btn" onClick={handleClick}>
         TRY AGAIN
