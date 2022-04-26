@@ -27,8 +27,8 @@ const Card = ({ highScore, onUpdateHighScore }) => {
     setScore(0)
   }
 
-  const handleWrongAnswer = () => {
-    setWrongAnswer(true)
+  const handleWrongAnswer = (status) => {
+    setWrongAnswer(status)
   }
 
   // Callback for the timer
@@ -69,8 +69,7 @@ const Card = ({ highScore, onUpdateHighScore }) => {
   // Deduct time on wrong answer
   useEffect(() => {
     if (wrongAnswer) {
-      setWrongAnswer(false)
-      setSec(sec - 10)
+      setSec(sec - 5)
     }
   }, [wrongAnswer])
 
@@ -81,6 +80,8 @@ const Card = ({ highScore, onUpdateHighScore }) => {
         onUpdateSec={handleUpdateSec}
         onGameOver={handleGameOver}
         quizStart={quizStart}
+        wrongAnswer={wrongAnswer}
+        onWrongAnswer={handleWrongAnswer}
       />
       {isGameOver ? (
         <GameOverCard

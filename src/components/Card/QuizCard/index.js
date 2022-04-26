@@ -38,7 +38,7 @@ const QuizCard = ({
     } else {
       setWrongAnswers([...wrongAnswers, index])
       // Tell parent that user made a wrong answer
-      onWrongAnswer()
+      onWrongAnswer(true)
     }
   }
 

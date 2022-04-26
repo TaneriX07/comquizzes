@@ -15,7 +15,7 @@ const StartCard = ({ onChangeMode }) => {
           Your objective is to answer as much question as you can in 1 minute.
         </p>
         <p>
-          Please note that incorrect answer will result in 10 seconds penalty.
+          Please note that incorrect answer will result in 5 seconds penalty.
         </p>
         <p>The questions are related to computers, It'll be fun.</p>
       </div>

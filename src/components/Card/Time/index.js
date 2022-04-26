@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react'
 import './Time.css'
 
-const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
+const Time = ({
+  sec,
+  onUpdateSec,
+  onGameOver,
+  quizStart,
+  wrongAnswer,
+  onWrongAnswer,
+}) => {
   useEffect(() => {
     if (quizStart) {
       if (sec >= 0) {
@@ -9,8 +16,14 @@ const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
           onUpdateSec(sec)
         }, 1000)
 
+        // We use setTimeout here so that the animation can play before the state reset (re-render)
+        const resetAnswerStatus = setTimeout(() => {
+          onWrongAnswer(false)
+        }, 300)
+
         return () => {
           clearTimeout(timer)
+          clearTimeout(resetAnswerStatus)
         }
       } else {
         onGameOver(true)
@@ -29,7 +42,11 @@ const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
     }
   }
 
-  return <div className="time">{quizStart ? printTime(sec) : '00:01:00'}</div>
+  return (
+    <div key={sec} className={wrongAnswer ? 'time shake' : 'time'}>
+      {quizStart ? printTime(sec) : '00:01:00'}
+    </div>
+  )
 }
 
 export default Time
