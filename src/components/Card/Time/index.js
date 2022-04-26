@@ -3,12 +3,14 @@ import './Time.css'
 
 const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
   useEffect(() => {
-    if (quizStart && sec >= 0) {
-      setTimeout(() => {
-        onUpdateSec(sec)
-      }, 1000)
-    } else {
-      onGameOver(true)
+    if (quizStart) {
+      if (sec >= 0) {
+        setTimeout(() => {
+          onUpdateSec(sec)
+        }, 1000)
+      } else {
+        onGameOver(true)
+      }
     }
   })
 

@@ -4,7 +4,7 @@ import './QuizCard.css'
 // Use "He" to decode HTML entities
 import he from 'he'
 
-const QuizCard = ({ quiz, onUpdateScore, score }) => {
+const QuizCard = ({ quiz, onUpdateScore, onResetScore, score }) => {
   const [answers, setAnswers] = useState([])
   const [wrongAnswers, setWrongAnswers] = useState([])
 
@@ -17,6 +17,11 @@ const QuizCard = ({ quiz, onUpdateScore, score }) => {
     )
     setWrongAnswers([])
   }, [quiz])
+
+  // Reset score in local state
+  useEffect(() => {
+    onResetScore()
+  }, [])
 
   // Check whether answer is true or false
   // If the answer is false, add it to the wrongAnswers array

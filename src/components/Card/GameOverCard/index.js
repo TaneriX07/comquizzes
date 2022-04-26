@@ -10,7 +10,7 @@ const GameOverCard = ({
 }) => {
   const handleClick = () => {
     onChangeMode(true)
-    onUpdateSec(5)
+    onUpdateSec(60)
     onGameOver(false)
   }
 
@@ -23,8 +23,8 @@ const GameOverCard = ({
         </p>
       ) : (
         <p className="game-over-message">
-          Too bad! You're {highScore - score}{' '}
-          {highScore - score <= 1 ? 'score' : 'scores'} away from setting a
+          Too bad! You're {highScore - score + 1}{' '}
+          {highScore - score + 1 <= 1 ? 'score' : 'scores'} away from setting a
           highscore
         </p>
       )}

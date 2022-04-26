@@ -9,7 +9,7 @@ const Card = ({ highScore, onUpdateHighScore }) => {
   const [quizStart, setQuizStart] = useState(false)
   const [quizzes, setQuizzes] = useState([])
   const [score, setScore] = useState(0)
-  const [sec, setSec] = useState(5)
+  const [sec, setSec] = useState(59)
   const [isGameOver, setIsGameOver] = useState(false)
 
   // Mode: StartCard or QuizCard
@@ -20,6 +20,10 @@ const Card = ({ highScore, onUpdateHighScore }) => {
   // This callback will be passed to QuizCard to update the score and the card
   const handleUpdateScore = (score) => {
     setScore(score + 1)
+  }
+
+  const handleResetScore = () => {
+    setScore(0)
   }
 
   // Callback for the timer
@@ -48,6 +52,15 @@ const Card = ({ highScore, onUpdateHighScore }) => {
     fetchQuizzes()
   }, [])
 
+  // Update score on game over
+  useEffect(() => {
+    if (isGameOver) {
+      if (score > highScore) {
+        onUpdateHighScore(score)
+      }
+    }
+  }, [isGameOver])
+
   return (
     <main>
       <Time
@@ -73,6 +86,7 @@ const Card = ({ highScore, onUpdateHighScore }) => {
         <QuizCard
           quiz={quizzes[score]}
           onUpdateScore={handleUpdateScore}
+          onResetScore={handleResetScore}
           score={score}
         />
       ) : null}
