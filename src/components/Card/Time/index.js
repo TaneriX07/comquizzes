@@ -5,9 +5,13 @@ const Time = ({ sec, onUpdateSec, onGameOver, quizStart }) => {
   useEffect(() => {
     if (quizStart) {
       if (sec >= 0) {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           onUpdateSec(sec)
         }, 1000)
+
+        return () => {
+          clearTimeout(timer)
+        }
       } else {
         onGameOver(true)
       }

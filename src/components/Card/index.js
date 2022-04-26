@@ -11,6 +11,7 @@ const Card = ({ highScore, onUpdateHighScore }) => {
   const [score, setScore] = useState(0)
   const [sec, setSec] = useState(59)
   const [isGameOver, setIsGameOver] = useState(false)
+  const [wrongAnswer, setWrongAnswer] = useState(false)
 
   // Mode: StartCard or QuizCard
   const handleChangeMode = (data) => {
@@ -24,6 +25,10 @@ const Card = ({ highScore, onUpdateHighScore }) => {
 
   const handleResetScore = () => {
     setScore(0)
+  }
+
+  const handleWrongAnswer = () => {
+    setWrongAnswer(true)
   }
 
   // Callback for the timer
@@ -61,6 +66,14 @@ const Card = ({ highScore, onUpdateHighScore }) => {
     }
   }, [isGameOver])
 
+  // Deduct time on wrong answer
+  useEffect(() => {
+    if (wrongAnswer) {
+      setWrongAnswer(false)
+      setSec(sec - 10)
+    }
+  }, [wrongAnswer])
+
   return (
     <main>
       <Time
@@ -87,6 +100,7 @@ const Card = ({ highScore, onUpdateHighScore }) => {
           quiz={quizzes[score]}
           onUpdateScore={handleUpdateScore}
           onResetScore={handleResetScore}
+          onWrongAnswer={handleWrongAnswer}
           score={score}
         />
       ) : null}

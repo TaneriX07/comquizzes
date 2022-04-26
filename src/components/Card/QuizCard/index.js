@@ -4,7 +4,13 @@ import './QuizCard.css'
 // Use "He" to decode HTML entities
 import he from 'he'
 
-const QuizCard = ({ quiz, onUpdateScore, onResetScore, score }) => {
+const QuizCard = ({
+  quiz,
+  onUpdateScore,
+  onResetScore,
+  score,
+  onWrongAnswer,
+}) => {
   const [answers, setAnswers] = useState([])
   const [wrongAnswers, setWrongAnswers] = useState([])
 
@@ -31,6 +37,8 @@ const QuizCard = ({ quiz, onUpdateScore, onResetScore, score }) => {
       onUpdateScore(score)
     } else {
       setWrongAnswers([...wrongAnswers, index])
+      // Tell parent that user made a wrong answer
+      onWrongAnswer()
     }
   }
 
