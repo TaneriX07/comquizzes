@@ -21,8 +21,3 @@ main {
   box-shadow: var(--shadow);
   transition: var(--transition);
 }
-
-.time {
-  font-size: 2rem;
-  color: var(--bg-primary)
-}

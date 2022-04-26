@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import './Card.css'
 import StartCard from './StartCard'
 import QuizCard from './QuizCard'
+import Time from './Time'
 
 const Card = () => {
   const [quizStart, setQuizStart] = useState(false)
   const [quizzes, setQuizzes] = useState([])
   const [score, setScore] = useState(0)
+  const [sec, setSec] = useState(50)
 
   // Mode: StartCard or QuizCard
   const handleChangeMode = (data) => {
@@ -16,6 +18,11 @@ const Card = () => {
   // This callback will be passed to QuizCard to update the score and the card
   const handleUpdateScore = (score) => {
     setScore(score + 1)
+  }
+
+  // Callback for the timer
+  const handleUpdateSec = (sec) => {
+    setSec(sec - 1)
   }
 
   // Fetch quizzes
@@ -37,7 +44,7 @@ const Card = () => {
 
   return (
     <main>
-      <div className="time">00:00:50</div>
+      <Time sec={sec} onUpdateSec={handleUpdateSec} />
       {!quizStart ? <StartCard onChangeMode={handleChangeMode} /> : null}
       {/* This prevent the QuizCard from being rendered when the data fetching is not yet done */}
       {quizStart && quizzes.length > 0 ? (
