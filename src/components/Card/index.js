@@ -9,6 +9,7 @@ const Card = () => {
   const [quizzes, setQuizzes] = useState([])
   const [score, setScore] = useState(0)
   const [sec, setSec] = useState(50)
+  const [isGameOver, setIsGameOver] = useState(false)
 
   // Mode: StartCard or QuizCard
   const handleChangeMode = (data) => {
@@ -23,6 +24,10 @@ const Card = () => {
   // Callback for the timer
   const handleUpdateSec = (sec) => {
     setSec(sec - 1)
+  }
+
+  const handleGameOver = (status) => {
+    setIsGameOver(status)
   }
 
   // Fetch quizzes
@@ -44,10 +49,17 @@ const Card = () => {
 
   return (
     <main>
-      <Time sec={sec} onUpdateSec={handleUpdateSec} />
-      {!quizStart ? <StartCard onChangeMode={handleChangeMode} /> : null}
+      <Time
+        sec={sec}
+        onUpdateSec={handleUpdateSec}
+        onGameOver={handleGameOver}
+      />
+      {isGameOver ? <div>Game OVER</div> : null}
+      {!quizStart && !isGameOver ? (
+        <StartCard onChangeMode={handleChangeMode} />
+      ) : null}
       {/* This prevent the QuizCard from being rendered when the data fetching is not yet done */}
-      {quizStart && quizzes.length > 0 ? (
+      {quizStart && quizzes.length > 0 && !isGameOver ? (
         <QuizCard
           quiz={quizzes[score]}
           onUpdateScore={handleUpdateScore}

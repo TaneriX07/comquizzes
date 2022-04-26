@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Time.css'
 
-const Time = ({ sec, onUpdateSec }) => {
+const Time = ({ sec, onUpdateSec, onGameOver }) => {
   useEffect(() => {
     setTimeout(() => {
       onUpdateSec(sec)
@@ -11,6 +11,7 @@ const Time = ({ sec, onUpdateSec }) => {
   // Make sure the seconds are displayed properly
   const printSec = (sec) => {
     if (sec <= 0) {
+      onGameOver(true)
       return '00'
     } else if (sec < 10) {
       return '0' + sec

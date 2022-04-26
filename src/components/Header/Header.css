@@ -16,6 +16,11 @@ header {
   user-select: none;
 }
 
+.logo a {
+  text-decoration: none;
+  color: var(--text-secondary)
+}
+
 .highscores {
   padding: 1rem;
   font-weight: 600;
