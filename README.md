@@ -28,6 +28,6 @@ Here's how you can setup the project locally:
    npm start
    ```
 
-Alternatively, you can visit the site [here]().
+Alternatively, you can visit the site [here](https://main--visionary-youtiao-9c3726.netlify.app/).
 
 [product-screenshot]: screenshots/Screenshot1.png
